@@ -19,7 +19,7 @@ void loop();
 char setMe[200] = "splash";
 char usefulString[20] = "/bin/sh";
 
-void pwnme(char *input, int size){
+void __attribute__ ((noinline)) pwnme(char *input, int size){
     char buf[8];
     memcpy(buf, input, size);
     return;
