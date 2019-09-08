@@ -19,9 +19,22 @@ void loop();
 char setMe[200] = "splash";
 char usefulString[20] = "/bin/sh";
 
+void wrapper(char *input, char *buf, int size)
+{
+	memcpy(buf, input, size);
+}
+
 void __attribute__ ((noinline)) pwnme(char *input, int size){
+    
     char buf[8];
-    memcpy(buf, input, size);
+    int i = 0;
+    //__asm__ __volatile__("mov %rcx, %%0;"::"r"(size):);
+    //__asm__ __volatile__("mov %rdi, %%0;"::"r"(buf):);
+    ////__asm__ __volatile__("mov %rsi, %%0"::"r"(input):);
+    //__asm__ __volatile__("rep stosd":::);
+    wrapper(input, buf, size);
+
+
     return;
 }
 
